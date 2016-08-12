@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load staticfiles %}
+
+<h1><a href = "{% url 'blog:index' %}" style='text-decoration:none;color: #2d6dcc'>Blog</a></h1>
+
+
+<table border=0 height=600px align=left>
+	<tr>
+		<td width=20% align=left valign=top style="BORDER-RIGHT: #999999 1px dashed">
+			<ul id="tree" class="ztree">
+			</ul>
+		</td>
+		
+		<td width=80% align=left valign=top >
+			<p align = left> 创建时间：{{article.created_time|date:"Y年n月d日"}}</p>
+			{{ article.body |safe }}
+		</td>
+	</tr>
+</table>
+
+
+ <link rel="stylesheet" href="{% static 'blog/css/zTreeStyle/zTreeStyle.css' %}">
+  <style>
+	body {
+	background-color: white;
+	margin:0; padding:0;
+	text-align: center;
+	}
+	div, p, table, th, td {
+		list-style:none;
+		margin:0; padding:0;
+		color:#333; font-size:16px;
+		font-family:dotum, Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+	}
+	.ztree li a.curSelectedNode {
+		padding-top: 0px;
+		background-color: #FFE6B0;
+		color: black;
+		height: 16px;
+		border: 1px #FFB951 solid;
+		opacity: 0.8;
+	}
+  </style>
+<script type="text/javascript" src="{% static 'blog/js/jquery-1.4.4.min.js' %}" type="text/css"></script>
+<script type="text/javascript" src="{% static 'blog/js/jquery.ztree.core-3.5.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/src/ztree_toc.js' %}"></script>
+	<SCRIPT type="text/javascript" >
+	<!--
+	$(document).ready(function(){
+		$('#tree').ztree_toc({
+
+		});
+	});
+	//-->
+	</SCRIPT>
+
+
+
+
+{% endblock %}

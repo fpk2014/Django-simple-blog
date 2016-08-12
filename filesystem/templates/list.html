@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'blog/css/mybtn14_3/mybtn14_3.css' %}">
+
+
+<div class="mybtn14_3" style="text-align:center;background:#2d6dcc; color:#FFF;margin:0;">
+<span style="float:right;">
+<a href = "{% url 'admin:index' %}" style='text-decoration:none;'>登录</a>
+</span>
+
+<span style="float:center;">
+<h1><a href = "{% url 'blog:index' %}" style='text-decoration:none;'>Blog</a></h1>
+</span>
+</div>
+
+<hr/>
+        <!-- Upload form. Note enctype attribute! -->
+        <form action="{% url 'file:list' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+
+            <p>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+            </p>
+
+            <p><input type="submit" value="Upload"/></p>
+        </form>
+		
+		<br/><hr/>
+		
+
+
+		<!-- List of uploaded documents -->
+		<p>文件列表：</p>
+        {% if documents %}
+            <ul>
+                {% for document in documents %}
+                    <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No documents.</p>
+        {% endif %}
+
+
+{% endblock %}

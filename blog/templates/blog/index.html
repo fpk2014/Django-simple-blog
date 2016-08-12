@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'blog/css/mybtn14_3/mybtn14_3.css' %}">
+
+
+<div class="mybtn14_3" style="text-align:center;background:#2d6dcc; color:#FFF;margin:0;">
+<span style="float:right;">
+<a href = "{% url 'admin:index' %}" style='text-decoration:none;'>登录</a>
+<a href = "{% url 'file:list' %}" style='text-decoration:none;'>上传</a>
+</span>
+
+<span style="float:center;">
+<h1><a href = "{% url 'blog:index' %}" style='text-decoration:none;'>Blog</a></h1>
+</span>
+</div>
+
+<hr/>
+
+<div style = "width:70%;border-left: 0px solid #000;border-right: 0px solid #000;position: absolute;background-color:#FFF;left:15%">	
+	{% for article in article_list %}
+		<p><a href = "{% url 'blog:detail' article.pk %}">
+		{{article.title}}
+		</a></p>
+		摘要：{{article.abstract|safe}}
+		<p align = right>{{article.last_modified_time|date:"Y年n月d日"}}</p>
+		<p align = right>浏览量：{{article.views}}</p>
+		<hr/>
+	{% endfor %}
+</div>
+
+
+{% endblock %}

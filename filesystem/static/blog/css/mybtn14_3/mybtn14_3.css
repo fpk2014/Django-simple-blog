@@ -1,0 +1,24 @@
+/* 这部份是div调用的css样式  */
+.mybtn14_3  
+{  
+
+        line-height:50px;  
+		margin:0;
+		padding:0;
+        height:50px;  
+		width:100%;
+}  
+  
+/* 这部份是设置a标签的字体属性  */
+.mybtn14_3 a  
+{  
+   color:#fff;  
+   font-weight:blod;
+}  
+
+.mybtn14_3  body
+{  
+		margin:0;
+		padding:0;
+
+}  
